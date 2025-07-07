@@ -38,7 +38,7 @@ deactivate () {
 # unset irrelevant variables
 deactivate nondestructive
 
-VIRTUAL_ENV=/home/take37/jk_kobo/materials/4/plot/venv
+VIRTUAL_ENV=/home/take37/jk_kobo/materials/0/test/venv
 export VIRTUAL_ENV
 
 _OLD_VIRTUAL_PATH="$PATH"
