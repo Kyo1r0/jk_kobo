@@ -4,6 +4,14 @@
 グラフはpythonでcsvファイルを読み込んでpngにしている.
 出力をCSVファイル形式にしてそれをpythonで書き出す。
 参考にしたもの：[謁見レポート用グラフをPythonで描く](https://note.com/js2fzh/n/n4ebe87a23c8a)
+仮想環境作成で参考にしたもの(これで作った環境にそれぞれ入れる):
+[venvで手軽にPythonの仮想環境を構築しよう](https://qiita.com/shun_sakamoto/items/7944d0ac4d30edf91fde)
+はじめに各ディレクトリで```plot```を作成する.
+```
+mkdir plot
+python -m venv venv
+```
+
 仮想環境のコマンド
 
 ```
@@ -16,6 +24,11 @@ deactivate
 ```
  終わり
 
+### モジュールのインストール
+```
+pip install matplotlib
+pip install pandas
+```
 
 <details><summary>1つ目のプログラム</summary>
 
