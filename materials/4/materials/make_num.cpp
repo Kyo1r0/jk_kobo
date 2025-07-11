@@ -63,7 +63,7 @@ int main() {
     while (check_Z(b_d)) {}// 置換が行われなくなるまでループ（関数がtrueを返す限りループが続く）
 
 
-    cout << "最終結果: ";
+    cout << "結果: ";
     for (auto& e : b_d) {
         cout << e;
     }

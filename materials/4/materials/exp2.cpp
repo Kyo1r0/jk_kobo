@@ -103,7 +103,12 @@ string generate_game_string(const vector<string>& board) {
     return result; 
 }
 
-// ★修正点: 3xNの盤面を生成できるよう、引数を(rows, cols)に変更
+/**
+ * @brief 3xNの「タイルパターン」盤面を生成する
+ * @param rows 盤面の行数 (3を想定)
+ * @param cols 盤面の列数 (3の倍数を想定)
+ * @return 生成された盤面
+ */
 vector<string> generate_tiled_pattern_board(int rows, int cols) {
     vector<string> board(rows, string(cols, '.'));
     for (int i = 0; i < rows; ++i) {
@@ -123,16 +128,26 @@ vector<string> generate_tiled_pattern_board(int rows, int cols) {
 }
 
 int main() {
-    // CSVファイルを開く
+    // --- ファイルの準備 ---
     ofstream csv_file("konane_3xN_results.csv");
     if (!csv_file.is_open()) {
         cerr << "エラー: CSVファイルを開けませんでした。" << endl;
         return 1;
     }
     
-    // CSVヘッダーを書き込む
-    csv_file << "n,string_length\n";
+    // ★修正点: 出力ファイルを .txt に変更
+    ofstream txt_file("konane_3xN_results.txt");
+    if (!txt_file.is_open()) {
+        cerr << "エラー: TXTファイルを開けませんでした。" << endl;
+        return 1;
+    }
 
+    // --- ヘッダーの書き込み ---
+    csv_file << "n,string_length\n";
+    
+    // ★修正点: TeXのヘッダーを削除
+
+    // --- ユーザー入力 ---
     int max_n;
     cout << "実験を実行する最大のNを入力してください (3の倍数): ";
     cin >> max_n;
@@ -142,13 +157,12 @@ int main() {
         return 1;
     }
 
-    // ★修正点: 指定されたmax_nまで、3の倍数ごとにループ
+    // --- 実験ループ ---
     for (int n = 3; n <= max_n; n += 3) {
         cout << "\n--- 3 x " << n << " の盤面を計算中... ---" << endl;
         
         memo.clear();
         
-        // 3xNの盤面を生成
         vector<string> board = generate_tiled_pattern_board(3, n);
         
         string ans = generate_game_string(board);
@@ -156,12 +170,21 @@ int main() {
         // CSVファイルへの出力
         csv_file << n << "," << ans.length() << "\n";
         
-        // 標準出力への出力
-        cout << "N = " << n << " の場合: " << ans << endl;
+        // ★修正点: TXTファイルへの出力形式を変更
+        txt_file << "N = " << n << "\n"
+                 << "String Length: " << ans.length() << "\n"
+                 << "Value: " << ans << "\n\n"
+                 << "----------------------------------------\n\n";
+        
+        // 標準出力への進捗表示
+        cout << "N = " << n << " の計算が完了しました。" << endl;
     }
     
+    // --- ファイルの後処理 ---
     csv_file.close();
-    cout << "\n実験結果を konane_3xN_results.csv に保存しました。" << endl;
+    txt_file.close();
+    
+    cout << "\n実験結果を konane_3xN_results.csv および konane_3xN_results.txt に保存しました。" << endl;
 
     return 0;
 }
