@@ -585,6 +585,10 @@ kiiになってしまう
 
 版面を上手く分割したいけど、この場合はどうやって分けたらいいか？
 
+それか
+値を分割して求める方法とか
+
+<details><summary>実行結果</summary>
 
 ```
 ./exp2
@@ -628,4 +632,6 @@ terminate called after throwing an instance of 'std::bad_alloc'
   what():  std::bad_alloc
 中止 (コアダンプ)
 ```
+
+</deactives>
 
