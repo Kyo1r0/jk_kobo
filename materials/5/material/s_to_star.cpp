@@ -11,20 +11,24 @@ list<char> to_list(const string& s) {
 }
 
 
-bool check_Z(list<char>& data) {
-    static map<list<char>, list<char>> rules;// 整数に関する置換ルールを定義
-    if (rules.empty()) { // 一番最初に生成
-        rules[to_list("{|}")] = to_list("0");
-        for (int i = 1; i <= 100; ++i) { // 100まで対応     
-            rules[to_list("{" + std::to_string(i - 1) + "|}")] = to_list(std::to_string(i)); // 正の整数: n = {n-1|}
-            rules[to_list("{|" + std::to_string(-(i - 1)) + "}")] = to_list(std::to_string(-i)); // 負の整数: n = {|-(n-1)}
+
+bool to_star(list<char>& data){
+    static map<list<char>, list<char>> rules_star;// 整数に関する置換ルールを定義
+    if (rules_star.empty()) { // 一番最初に生成
+        rules_star[to_list("0")] = to_list("*0");
+        rules_star[to_list("{0|0}")] = to_list("*");
+        string st = "*0,*,";
+        for (int i = 2; i <= 100; ++i) { // 100まで対応     
+            rules_star[to_list("{"+ st + ","+"*" + std::to_string(i - 1) + "|" +st + ","+"*" +  std::to_string(i - 1)+ "}")] = to_list("*"+std::to_string(i)); // 正のとき            
+            st = st + "," + "*"+to_string(i); //どんどん足していく
         }
     }
 
-  
+
+
     for (auto it = data.begin(); it != data.end(); ++it) {   // listを先頭からスキャン
-        for (const auto& rule : rules) {
-            const auto& pattern = rule.first; //{|}みたいなやつ
+        for (const auto& rule : rules_star) {
+            const auto& pattern = rule.first; //マップの片方　{*0,*,*2|*0,*,*2}
             const auto& replacement = rule.second; // マップの数字　数字 *3 
 
             auto temp_it = it;
@@ -50,29 +54,28 @@ bool check_Z(list<char>& data) {
         }
     }
     return false; // 置換は行われなかった
+
+
+
 }
 
 int main() {
-    cout << "文字列の個数を入れていください:";
-    int n;
-    cin >> n;
-    vector<string> str_retu(n);
+    string s;
     cout << "ゲーム木の文字列を入力してください: ";
-    for(int i=0;i<n;i++) cin >> str_retu[i];
-    for(int i=0;i<n;i++){
-    string s=str_retu[i];
+    cin >> s;
+
     list<char> b_d = to_list(s);  // 文字列をlist<char>に変換
 
     
-    while (check_Z(b_d)) {}// 置換が行われなくなるまでループ（関数がtrueを返す限りループが続く）
+    while (to_star(b_d)) {}// 置換が行われなくなるまでループ（関数がtrueを返す限りループが続く）
 
 
-    cout << "最終結果: ";
+    cout << "結果: ";
     for (auto& e : b_d) {
         cout << e;
     }
     cout << "\n";
-    }
 
     return 0;
+
 }

@@ -8,25 +8,12 @@ list<char> to_list(const string& s) {
         l.push_back(c);
     }
     return l;
-}
 
-
-bool check_Z(list<char>& data) {
-    static map<list<char>, list<char>> rules;// 整数に関する置換ルールを定義
-    if (rules.empty()) { // 一番最初に生成
-        rules[to_list("{|}")] = to_list("0");
-        for (int i = 1; i <= 100; ++i) { // 100まで対応     
-            rules[to_list("{" + std::to_string(i - 1) + "|}")] = to_list(std::to_string(i)); // 正の整数: n = {n-1|}
-            rules[to_list("{|" + std::to_string(-(i - 1)) + "}")] = to_list(std::to_string(-i)); // 負の整数: n = {|-(n-1)}
-        }
-    }
-
-  
     for (auto it = data.begin(); it != data.end(); ++it) {   // listを先頭からスキャン
         for (const auto& rule : rules) {
-            const auto& pattern = rule.first; //{|}みたいなやつ
-            const auto& replacement = rule.second; // マップの数字　数字 *3 
-
+            const auto& pattern = rule.first; //{|0}みたいの
+            const auto& replacement = rule.second; //数字
+            
             auto temp_it = it;
             auto pattern_it = pattern.begin();//つまり'{'
             bool match = true;
@@ -50,29 +37,42 @@ bool check_Z(list<char>& data) {
         }
     }
     return false; // 置換は行われなかった
+    
 }
 
+
+int to_q(string s){
+    static map<list<char>, list<char>> rules;// 整数に関する置換ルールを定義
+    if (rules.empty()) { // 一番最初に生成
+        rules[to_list("{|}")] = to_list("0");
+        for (int i = 1; i <= 100; ++i) { // 100まで対応     
+            rules[to_list("{" + std::to_string(i - 1) + "|}")] = to_list(std::to_string(i)); // 正の整数: n = {n-1|}
+            rules[to_list("{|" + std::to_string(-(i - 1)) + "}")] = to_list(std::to_string(-i)); // 負の整数: n = {|-(n-1)}
+        }
+    }
+
+
+
+}
+
+
 int main() {
-    cout << "文字列の個数を入れていください:";
-    int n;
-    cin >> n;
-    vector<string> str_retu(n);
+    string s;
     cout << "ゲーム木の文字列を入力してください: ";
-    for(int i=0;i<n;i++) cin >> str_retu[i];
-    for(int i=0;i<n;i++){
-    string s=str_retu[i];
+    cin >> s;
+
     list<char> b_d = to_list(s);  // 文字列をlist<char>に変換
 
     
-    while (check_Z(b_d)) {}// 置換が行われなくなるまでループ（関数がtrueを返す限りループが続く）
+    while (to_q(b_d)) {}// 置換が行われなくなるまでループ（関数がtrueを返す限りループが続く）
 
 
-    cout << "最終結果: ";
+    cout << "結果: ";
     for (auto& e : b_d) {
         cout << e;
     }
     cout << "\n";
-    }
 
     return 0;
+
 }
