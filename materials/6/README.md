@@ -27,8 +27,61 @@ $ \infty(\{0, 1, 2\})$ として出力されるようにした
 
 参考にしてたページ(https://jp-seemore.com/iot/24027/)
 
-```
+- ofstreamを使うことでstringの内容を出力ファイルにできる
 
+```
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+    int n;    // XORした値の比較対象
+    int w;    // 表のサイズ（範囲）
+    string filename; // CSVファイル名を格納する変数
+
+    int n;//n保持のn
+    int w;//求めたい範囲w
+    cout << "nを入力してください:";
+    cin >> n;
+    cout << "範囲を求めてください:";
+    cin >> w;
+    cout << "出力するCSVファイル名を入力してください (例: output.csv): ";
+    cin >> filename;
+
+
+    ofstream ofs(filename); // 入力されたファイル名でファイルを開く
+
+    if (!ofs) {　// ファイルが開けなかった場合のエラー処理
+        cout << "エラー: ファイル " << filename << " を開けませんでした。" << endl;
+        return 1; // 異常終了
+    }
+
+
+    vector<vector<string>> g(w, vector<string>(w));
+    for (int i = 0; i < w; i++) {
+        for (int j = 0; j < w; j++) {
+            int a = i ^ j;
+
+            if (a <= n) {
+                g[i][j] = to_string(a);
+            } else {
+                g[i][j] = "inf";
+            }
+
+      
+            ofs << g[i][j];
+            if (j != w - 1) {
+                ofs << ","; 
+            }
+        }
+        ofs << endl; 
+    }
+
+  
+    ofs.close(); //csvの終わり
+    cout << "配列の内容を " << filename << " に出力しました。" << endl;
+
+    return 0;
+}
 
 ```
 ## 実行結果
