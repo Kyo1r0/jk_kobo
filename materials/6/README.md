@@ -1,6 +1,6 @@
 # やったこと
 - n保持二ムのルーピーグランディ数を求めるプログラム
-- n保持Wythoffの二ムのルーピーグランディ数を求めるプログラム
+- n保持Wythoffの二ムのルーピーグランディ数を求めるプログラム(コードの再現が出来なかった)
 
 
 # n保持二ムのルーピーグランディ数を求めるプログラム
@@ -61,7 +61,7 @@ int main() {
         for (int j = 0; j < w; j++) {
             int a = i ^ j;
 
-            if (a <= n) {
+            if (a < n) {
                 g[i][j] = to_string(a);
             } else {
                 g[i][j] = "inf";
@@ -86,8 +86,23 @@ int main() {
 ```
 ## 実行結果
 ```
-
+0 1 2inf inf inf inf inf inf inf 
+1 0 inf2 inf inf inf inf inf inf 
+2 inf 01 inf inf inf inf inf inf 
+inf 2 10 inf inf inf inf inf inf 
+inf inf infinf 0 1 2 inf inf inf 
+inf inf infinf 1 0 inf 2 inf inf 
+inf inf infinf 2 inf 0 1 inf inf 
+inf inf infinf inf 2 1 0 inf inf 
+inf inf infinf inf inf inf inf 0 1 
+inf inf infinf inf inf inf inf 1 0
 ```
+![](./plot/table3.png)
+100まで実装した
+
+
+
+
 
 # n保持Wythoffの二ムのルーピーグランディ数を求めるプログラム
 
@@ -117,4 +132,23 @@ $$
 
 を使うことでグランディ数を求める
 
+## 実行結果(3保持wythoff二ム)
 
+```
+0,1,2,inf,inf,inf,inf,inf,inf,inf
+1,2,0,inf,inf,inf,inf,inf,inf,inf
+2,0,1,inf,inf,inf,inf,inf,inf,inf
+inf,inf,inf,inf,2,0,1,inf,inf,inf
+inf,inf,inf,2,inf,inf,inf,0,1,inf
+inf,inf,inf,0,inf,inf,inf,1,2,inf
+inf,inf,inf,1,inf,inf,inf,inf,inf,inf
+inf,inf,inf,inf,0,1,inf,inf,inf,inf
+inf,inf,inf,inf,1,2,inf,inf,inf,inf
+inf,inf,inf,inf,inf,inf,inf,inf,inf,inf
+
+```
+![](./plot/hozi1.png)
+
+
+100まで回す
+![](./plot/wythof_hozi2.png)

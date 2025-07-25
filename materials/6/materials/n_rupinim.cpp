@@ -13,7 +13,7 @@ int main() {
     for(int i=0;i<w;i++){
         for(int j=0;j<w;j++){
             int a= i^j;
-            if (a<=n)g[i][j]= to_string(a);
+            if (a<n)g[i][j]= to_string(a);
             else g[i][j]="inf";
 
             cout << g[i][j];
