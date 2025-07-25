@@ -114,6 +114,8 @@ inf inf infinf inf inf inf inf 1 0
 <details>
 <summary>　開く　 </summary>
 
+
+
 ```
 #include <bits/stdc++.h>
 using namespace std;//makecsv が実行ファイル
@@ -487,7 +489,109 @@ int main() {
 
 </details>
 
-###  特徴があるもの
+###  予想
+
+- 指数乗のときは形が似ているように見えた(2,4,8,16,32,)
+
+<details>
+<summary>　2^n　 </summary>
+
+#### 2^0保持二ム
+![](./materials/mk_csv/hozi(1).png)
+
+#### 2^1保持二ム
+![](./materials/mk_csv/hozi(2).png)
+
+#### 2^2保持二ム
+![](./materials/mk_csv/hozi(4).png)
+
+#### 2^3保持二ム
+![](./materials/mk_csv/hozi(8).png)
+
+#### 2^4保持二ム
+![](./materials/mk_csv/hozi(16).png)
+
+#### 2^5保持二ム
+![](./materials/mk_csv/hozi(32).png)
+
+#### 2^6保持二ム
+![](./materials/mk_csv/hozi(64).png)
+
+</details>
+
+
+<details>
+<summary>　3^n　 </summary>
+
+#### 3^0保持二ム
+![](./materials/mk_csv/hozi(1).png)
+
+#### 3^1保持二ム
+![](./materials/mk_csv/hozi(3).png)
+
+#### 3^2保持二ム
+![](./materials/mk_csv/hozi(9).png)
+
+#### 3^3保持二ム
+![](./materials/mk_csv/hozi(27).png)
+
+#### 3^4保持二ム
+![](./materials/mk_csv/hozi(81).png)
+
+</details>
+
+<details>
+<summary>　5^n　 </summary>
+
+#### 5^0保持二ム
+![](./materials/mk_csv/hozi(1).png)
+
+#### 5^1保持二ム
+![](./materials/mk_csv/hozi(5).png)
+
+#### 5^2保持二ム
+![](./materials/mk_csv/hozi(25).png)
+
+</details>
+
+
+<details>
+<summary>　n^2　 </summary>
+
+#### 0^2保持二ム
+![](./materials/mk_csv/hozi(0).png)
+
+#### 1^2保持二ム
+![](./materials/mk_csv/hozi(1).png)
+
+#### 2^2保持二ム
+![](./materials/mk_csv/hozi(4).png)
+
+#### 3^2保持二ム
+![](./materials/mk_csv/hozi(9).png)
+
+#### 4^2保持二ム
+![](./materials/mk_csv/hozi(16).png)
+
+#### 5^2保持二ム
+![](./materials/mk_csv/hozi(25).png)
+
+#### 6^2保持二ム
+![](./materials/mk_csv/hozi(36).png)
+
+#### 7^2保持二ム
+![](./materials/mk_csv/hozi(49).png)
+
+#### 8^2保持二ム
+![](./materials/mk_csv/hozi(64).png)
+
+#### 9^2保持二ム
+![](./materials/mk_csv/hozi(81).png)
+
+#### 10^2保持二ム
+![](./materials/mk_csv/hozi(100).png)
+
+</details>
 
 
 # ~ここからはうまくいかなかった~
